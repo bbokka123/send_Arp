@@ -1,11 +1,7 @@
 #Makefile
-all: send_arp
+all: send_arp.c
+	gcc -o send_arp send_arp.c -lpcap
 
-send_arp: send_arp.o
-		g++ -g -o send_arp send_arp.o -lpcap
-
-send_arp.o: 
-		g++ -g -c -o send_arp.o send_arp.c
 
 clean:
 		rm -f send_arp
