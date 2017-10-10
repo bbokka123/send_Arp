@@ -46,10 +46,10 @@ void FILL_ARP(arp_hdr * arp_header , uint8_t *sender_mac, uint8_t *target_mac, i
 	else
 		memset(arp_header->target_mac, 0x00, 6*sizeof(uint8_t));
 	
-	arp_header->hd_type = htons(ARPHRD_ETHER);		 //hw-type	        : ethernet
+	arp_header->hd_type = htons(ARPHRD_ETHER);	 //hw-type	        : ethernet
 	arp_header->p_type = htons(ETHERTYPE_IP);	 //protocol-type	: 2048 for ip
-	arp_header->hd_len = ETHER_ADDR_LEN;			 //hw-addr-length       : 6-byte
-	arp_header->p_len = sizeof(in_addr_t);			 //protocol-addr-length : 4-byte
+	arp_header->hd_len = ETHER_ADDR_LEN;		 //hw-addr-length       : 6-byte
+	arp_header->p_len = sizeof(in_addr_t);		 //protocol-addr-length : 4-byte
 	if (opcode)
 		arp_header->opcode = htons(ARPOP_REQUEST);//OpCode 		: ARP request
 	else
@@ -116,9 +116,6 @@ uint8_t* send_packet(uint8_t* arp_pkt, char * ip, char * interface, struct pcap_
 		return NULL;
 	}
 }
-
-
-
 
 
 
@@ -206,9 +203,9 @@ int main(int argc, char *argv[]){
 	inet_pton(AF_INET,argv[2],&fake_arp_header.target_ip);
 	FILL_ETH(&fake_ethh,sender_mac,my_mac);
 	fake_pkt=sum(&fake_ethh,&fake_arp_header);
-	uint8_t* empty;
+	uint8_t* gogo;
 	memset(&header,NULL,sizeof(struct pcap_pkthdr));
-	empty=send_packet(fake_pkt,NULL,argv[1],header,0);
+	gogo=send_packet(fake_pkt,NULL,argv[1],header,0);
 	close(fd);
 	return 0;
 }
