@@ -198,7 +198,7 @@ int main(int argc, char *argv[]){
 	memset(&fake_ethh,0x00,sizeof(struct ether_header));
 	memset(&fake_arp_header,0x00,sizeof(arp_hdr));
 	
-	FILL_ARP(&fake_arp_header,sender_mac,my_mac,0);
+	FILL_ARP(&fake_arp_header,my_mac,sender_mac,0);
 	inet_pton(AF_INET,argv[3],&fake_arp_header.sender_ip);
 	inet_pton(AF_INET,argv[2],&fake_arp_header.target_ip);
 	FILL_ETH(&fake_ethh,sender_mac,my_mac);
