@@ -33,7 +33,7 @@ typedef struct _arp_hdr {
 	uint8_t target_ip[4];
 }arp_hdr;
 
-void FILL_ETH(struct ether_header *ethh, unsigned char *dst_mac, uint8_t *src_mac){
+void FILL_ETH(struct ether_header *ethh, uint8_t *dst_mac, uint8_t *src_mac){
 		memcpy(ethh->ether_dhost,dst_mac,6);
 		memcpy(ethh->ether_shost,src_mac,6);
 		ethh->ether_type=ntohs(ETHERTYPE_ARP);
